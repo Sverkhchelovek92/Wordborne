@@ -14,3 +14,21 @@ span {
 input {
   width: 35px;
 }
+
+.display_words {
+  margin-top: 12px;
+}
+
+button {
+  border: none;
+  background-color: white;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+li {
+  list-style-type: none;
+}
