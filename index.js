@@ -71,6 +71,7 @@ function saveWord() {
   const savedWordWord = document.createElement("p");
   savedWordInList.appendChild(savedWordWord);
   savedWordWord.textContent = savedWord;
+  savedWordWord.className = "p-word";
   savedWordInList.className = "saved-li";
 
   const delBtn = document.createElement("button");
@@ -78,7 +79,17 @@ function saveWord() {
   delBtn.innerHTML = delIcon;
   delBtn.dataset.action = "delete";
 
-  savedWordInList.appendChild(delBtn);
+  const mutBtn = document.createElement("button");
+  mutBtn.className = "mut-btn";
+  mutBtn.textContent = "Mutate Word";
+  mutBtn.dataset.action = "mutate";
+
+  const btnDiv = document.createElement("div");
+
+  btnDiv.appendChild(delBtn);
+  btnDiv.appendChild(mutBtn);
+
+  savedWordInList.appendChild(btnDiv);
   savedWordsDisplay.appendChild(savedWordInList);
 }
 
@@ -94,3 +105,26 @@ function deleteWord(event) {
 savedWordsDisplay.addEventListener("click", deleteWord);
 
 // Next step - function for mutating words!
+
+function mutateWord(event) {
+  if (event.target.dataset.action === "mutate") {
+    let wordToMutate = event.target
+      .closest("li")
+      .querySelector("p").textContent;
+
+    const newLetter = chooseLetter();
+
+    const letterToMutate = Math.floor(Math.random() * wordToMutate.length);
+
+    const newWord =
+      wordToMutate.substring(0, letterToMutate) +
+      newLetter +
+      wordToMutate.substring(letterToMutate + 1);
+
+    const mutatedWord = event.target.closest("li").querySelector(".p-word");
+
+    mutatedWord.textContent = newWord;
+  }
+}
+
+savedWordsDisplay.addEventListener("click", mutateWord);
