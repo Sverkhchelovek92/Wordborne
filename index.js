@@ -83,3 +83,14 @@ function saveWord() {
 }
 
 saveBtn.addEventListener("click", saveWord);
+
+function deleteWord(event) {
+  if (event.target.dataset.action === "delete") {
+    const parentLi = event.target.closest("li");
+    parentLi.remove();
+  }
+}
+
+savedWordsDisplay.addEventListener("click", deleteWord);
+
+// Next step - function for mutating words!

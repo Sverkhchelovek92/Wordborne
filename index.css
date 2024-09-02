@@ -29,6 +29,10 @@ button:hover {
   opacity: 70%;
 }
 
+button img {
+  pointer-events: none;
+}
+
 li {
   list-style-type: none;
 }
