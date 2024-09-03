@@ -61,6 +61,9 @@ function createWord() {
   }
 
   display.textContent = word;
+
+  saveBtn.classList.remove("hidden");
+  mutateBtn.classList.remove("hidden");
 }
 
 const savedWordsDisplay = document.querySelector(".display_words");
@@ -115,5 +118,3 @@ function mutate() {
 }
 
 mutateBtn.addEventListener("click", mutate);
-
-// Write a function to hide save and mutate buttons
