@@ -2,6 +2,7 @@ const genBtn = document.querySelector(".gen-btn");
 const display = document.querySelector(".display");
 const numOfLetters = document.querySelector(".letters-num");
 const saveBtn = document.querySelector(".save-btn");
+const mutateBtn = document.querySelector(".mutate-btn");
 
 const delIcon = `<img src="delete.svg" width="15">`;
 const saveIcon = `<img src="save.svg" width="20">`;
@@ -79,15 +80,9 @@ function saveWord() {
   delBtn.innerHTML = delIcon;
   delBtn.dataset.action = "delete";
 
-  const mutBtn = document.createElement("button");
-  mutBtn.className = "mut-btn";
-  mutBtn.textContent = "Mutate Word";
-  mutBtn.dataset.action = "mutate";
-
   const btnDiv = document.createElement("div");
 
   btnDiv.appendChild(delBtn);
-  btnDiv.appendChild(mutBtn);
 
   savedWordInList.appendChild(btnDiv);
   savedWordsDisplay.appendChild(savedWordInList);
@@ -104,27 +99,21 @@ function deleteWord(event) {
 
 savedWordsDisplay.addEventListener("click", deleteWord);
 
-// Next step - function for mutating words!
+function mutate() {
+  let word = display.textContent;
 
-function mutateWord(event) {
-  if (event.target.dataset.action === "mutate") {
-    let wordToMutate = event.target
-      .closest("li")
-      .querySelector("p").textContent;
+  const newLetter = chooseLetter();
+  const letterToMutate = Math.floor(Math.random() * word.length);
+  const newWord =
+    word.substring(0, letterToMutate) +
+    newLetter +
+    word.substring(letterToMutate + 1);
 
-    const newLetter = chooseLetter();
+  display.textContent = newWord;
 
-    const letterToMutate = Math.floor(Math.random() * wordToMutate.length);
-
-    const newWord =
-      wordToMutate.substring(0, letterToMutate) +
-      newLetter +
-      wordToMutate.substring(letterToMutate + 1);
-
-    const mutatedWord = event.target.closest("li").querySelector(".p-word");
-
-    mutatedWord.textContent = newWord;
-  }
+  console.log(word);
 }
 
-savedWordsDisplay.addEventListener("click", mutateWord);
+mutateBtn.addEventListener("click", mutate);
+
+// Write a function to hide save and mutate buttons
