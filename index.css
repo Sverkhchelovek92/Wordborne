@@ -40,3 +40,14 @@ li {
 .hidden {
   display: none;
 }
+
+.saved-li {
+  display: flex;
+  gap: 5px;
+}
+
+.del-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -72,7 +72,7 @@ function saveWord() {
   const savedWord = display.textContent;
 
   const savedWordInList = document.createElement("li");
-  const savedWordWord = document.createElement("p");
+  const savedWordWord = document.createElement("span");
   savedWordInList.appendChild(savedWordWord);
   savedWordWord.textContent = savedWord;
   savedWordWord.className = "p-word";
@@ -84,6 +84,7 @@ function saveWord() {
   delBtn.dataset.action = "delete";
 
   const btnDiv = document.createElement("div");
+  btnDiv.className = "btn-div";
 
   btnDiv.appendChild(delBtn);
 
@@ -113,8 +114,6 @@ function mutate() {
     word.substring(letterToMutate + 1);
 
   display.textContent = newWord;
-
-  console.log(word);
 }
 
 mutateBtn.addEventListener("click", mutate);
